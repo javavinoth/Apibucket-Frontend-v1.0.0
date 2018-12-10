@@ -17,23 +17,36 @@ export class LoginService {
 
   }
 
-  createAuthHeader(headers: Headers) {
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Basic ' + btoa('user-name:password'));
-  }
+  // createAuthHeader(headers: Headers, userName: string, password: string) {
+  //   headers.append('Content-Type', 'application/json');
+  //   headers.append('Authorization', 'Basic ' + btoa(userName: password));
+  // }
 
 
-  login(userName: string, password: string): Observable<HttpResponse<string>> {
+  login(userName: string, password: string): Observable<any> {
     let headers = new Headers();
-    this.createAuthHeader(headers);
-    return this.http.post(this.url, '', { headers: headers },
-    );
 
+    let enUserPwd = 'Basic ' + btoa(userName + ':' + password);
+    // headers.set('Authorization', enUserPwd);
 
+    // return this.http.post(this.url, {}, { headers: new Headers(){
+    //   'Authorization': enUserPwd
+    // });
 
-
-
-
+    // return this.http.post(this.url, {},
+    //   {
+    //     headers: new HttpHeaders({'Authorization': enUserPwd, 'Accept': 'application/json'};{ observe: 'response' }
+    //   }
+    //   );
+    return this.http.post(this.url,{},
+      { headers: new HttpHeaders({ 'Authorization': enUserPwd, 'Accept': 'application/json' }),
+      observe: "response"
+      
+  });
 
   }
 }
+
+
+
+

@@ -14,46 +14,33 @@ export class LoginComponent implements OnInit {
   public isSignUp: boolean;
   public isSignIn: boolean;
 
+  headers: string[];
 
-  // public user=LoginModel{
 
-  // }
+
   constructor(private _loginService: LoginService) { }
 
 
   ngOnInit() {
 
   }
+
+  
   doLogin() {
 
     console.log("userName" + this.userName);
     console.log("userPassword" + this.userPassword);
     console.log();
     this._loginService.login(this.userName, this.userPassword)
-      .subscribe(data => console.log(data));
-
-
-
+      .subscribe(response =>{
+      console.log(response.status);});
+      // .subscribe(resp => {
+      //   // display its headers
+      //   const keys = resp.headers.keys();
+      //   this.headers = keys.map(key =>
+      //     `${key}: ${resp.headers.get(key)}`);
+      // });
+     
 
   }
-
-
-
-  // ngOnInit() {
-  //   this.isSignUp=false;
-  //   this.isSignIn=true;
-  // }
-
-  // doSignUp()
-  // {
-  //   console.log("****** doSignUp is called *******");
-  //   this.isSignUp=true;
-  //   this.isSignIn=false;
-  // }
-  // doSignIn()
-  // {
-  //   console.log("****** doSignIn is called *******");
-  //   this.isSignUp=false;
-  //   this.isSignIn=true;
-  // }
 }
