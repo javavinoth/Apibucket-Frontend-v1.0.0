@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { SignUpEntity } from '../models/SignUpEntity';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
 
-  url: string = "http://localhost:8080/user/signup";
+  private api: string = environment.apiUrl;
+
+  private url: string = "http://13.127.244.113:8080/user/signup";
   constructor(private http: HttpClient) {
 
   }

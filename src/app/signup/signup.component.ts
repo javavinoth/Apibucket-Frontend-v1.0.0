@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SignupService } from '../services/signup.service';
 import { SignUpEntity } from '../models/SignUpEntity';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PlatformLocation } from '@angular/common';
 
 
 @Component({
@@ -25,7 +26,14 @@ export class SignupComponent implements OnInit {
 
   constructor(private _signupService: SignupService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    location: PlatformLocation) {
+    location.onPopState(() => {
+      console.log('pressed back in add!!!!!');
+      //this.router.navigateByUrl(‘/multicomponent’);
+      //history.forward();
+    });
+
     this.isCreated = false;
     this.userDetails = {
       userName: this.userName,
@@ -33,6 +41,7 @@ export class SignupComponent implements OnInit {
       userEmail: this.userEmail
     }
   }
+
 
   ngOnInit() {
     this.isSignUp = false;
@@ -52,6 +61,6 @@ export class SignupComponent implements OnInit {
         }
         console.log(response.status);
       });
-    
+
   }
 }

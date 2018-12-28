@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginService } from './services/login.service';
-import { HomeComponent } from './home/home.component';
-
+import { HomeComponent, SafePipe } from './home/home.component';
+import { ApiTableComponent } from './api-table/api-table.component';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatPaginator } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,13 +19,19 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    ApiTableComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

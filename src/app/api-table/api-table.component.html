@@ -1,12 +1,17 @@
 <div class="mat-elevation-z8" style="width: 50%;margin-left: 25%;">
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+    <!-- Id Column
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container> -->
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header style="margin-left: 50%;">Api</th>
       <td mat-cell *matCellDef="let row">
-          <a href= "{{row.apiUrl}}" > {{row.apiName}} </a>
-       
+        <a href={{row.apiUrl}} target="{{condition ? '_blank' : '_self'}}"> {{row.apiName}} </a>
+
       </td>
     </ng-container>
 
@@ -22,5 +27,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="50" [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
 </div>
